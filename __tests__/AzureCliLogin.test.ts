@@ -129,7 +129,7 @@ describe('AzureCliLogin', () => {
         const registerCall = mockedExec.mock.calls.find(([, args]) => args[1] === 'register');
         expect(registerCall?.[1]).toEqual(expect.arrayContaining([
             '--endpoint-resource-manager', 'https://management.local/',
-            '--suffix-keyvault-dns', '.local',
+            '--suffix-keyvault-dns', '.vault.local',
             '--suffix-storage-endpoint', 'local',
             '--profile', '2019-03-01-hybrid'
         ]));
@@ -182,17 +182,21 @@ describe('AzureCliLogin', () => {
     });
 
     test('writes non-warning CLI stderr to the action error log', async () => {
-        provideVersion('2.70.0');
-        const login = new AzureCliLogin(config());
-        login.azPath = '/usr/bin/az';
-        await login.executeAzCliCommand(['account', 'show'], true, {
-            listeners: { stderr: (data: Buffer) => core.error(data.toString()) }
+        mockedExec.mockImplementation(async (_command, args, options) => {
+            if (args[0] === 'version') {
+                options?.listeners?.stdout?.(Buffer.from('{"azure-cli":"2.70.0"}'));
+            }
+            if (args[0] === 'login') {
+                options?.listeners?.stderr?.(Buffer.from('WARNING: ignored'));
+                options?.listeners?.stderr?.(Buffer.from('ERROR: failed'));
+            }
+            return 0;
         });
 
-        const options = mockedExec.mock.calls[0][2];
-        options?.listeners?.stderr?.(Buffer.from('WARNING: ignored'));
-        options?.listeners?.stderr?.(Buffer.from('ERROR: failed'));
-        expect(core.error).toHaveBeenCalledWith('ERROR: failed');
-        expect(options?.silent).toBe(true);
+        await new AzureCliLogin(config()).login();
+
+        expect(core.error).toHaveBeenCalledWith('failed');
+        expect(core.error).not.toHaveBeenCalledWith('WARNING: ignored');
+        expect(mockedExec.mock.calls[2][2]?.silent).toBe(true);
     });
 });
