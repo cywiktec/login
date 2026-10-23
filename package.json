@@ -6,7 +6,11 @@
     "build:main": "ncc build src/main.ts -o lib/main && node scripts/copy-ps-assets.js",
     "build:cleanup": "ncc build src/cleanup.ts -o lib/cleanup",
     "build": "npm run build:main && npm run build:cleanup",
-    "test": "jest"
+    "test": "jest --runInBand --coverage",
+    "test:unit": "jest --runInBand --testPathIgnorePatterns='/__tests__/(integration|e2e)/'",
+    "test:integration": "jest --runInBand __tests__/integration",
+    "test:recovery": "jest --runInBand __tests__/integration/cleanup.test.ts",
+    "test:e2e": "jest --runInBand __tests__/e2e"
   },
   "author": "Microsoft",
   "license": "MIT",
