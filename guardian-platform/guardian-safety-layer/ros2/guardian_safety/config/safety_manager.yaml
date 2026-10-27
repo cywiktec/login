@@ -1,0 +1,3 @@
+safety_manager:
+  ros__parameters:
+    rate_hz: 10.0

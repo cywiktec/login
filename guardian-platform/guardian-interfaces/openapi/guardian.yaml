@@ -1,0 +1,71 @@
+openapi: 3.0.3
+info:
+  title: MISIEK AI Guardian API
+  version: 0.1.0
+paths:
+  /status:
+    get:
+      summary: Current state, health and battery
+      operationId: getStatus
+      responses:
+        "200":
+          description: Status report
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StatusReport"
+  /commands:
+    post:
+      summary: Send a command to the guardian
+      operationId: sendCommand
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommandRequest"
+      responses:
+        "200":
+          description: Command result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CommandResponse"
+        "409":
+          description: Transition not allowed in the current state
+components:
+  schemas:
+    State:
+      type: string
+      enum: [INIT, SELF_TEST, READY, MISSION, RTB, CHARGING, SAFE_MODE, EMERGENCY_STOP]
+    HealthStatus:
+      type: object
+      required: [cpu, ram, disk]
+      properties:
+        cpu: {type: number}
+        ram: {type: number}
+        disk: {type: number}
+    BatteryStatus:
+      type: object
+      nullable: true
+      properties:
+        percent: {type: number}
+        plugged: {type: boolean}
+    StatusReport:
+      type: object
+      required: [state, health]
+      properties:
+        state: {$ref: "#/components/schemas/State"}
+        health: {$ref: "#/components/schemas/HealthStatus"}
+        battery: {$ref: "#/components/schemas/BatteryStatus"}
+    CommandRequest:
+      type: object
+      required: [command]
+      properties:
+        command: {type: string, example: rozpocznij patrol}
+    CommandResponse:
+      type: object
+      required: [accepted]
+      properties:
+        accepted: {type: boolean}
+        message: {type: string}

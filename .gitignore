@@ -103,3 +103,9 @@ Thumbs.db
 # Ignore built ts files
 __tests__/runner/*
 lib/**/*
+
+# Python virtual environments and generated files
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/

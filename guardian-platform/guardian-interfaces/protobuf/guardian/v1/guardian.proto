@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+package guardian.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+// Mirrors guardian_core.state_manager.GuardianState.
+enum State {
+  STATE_UNSPECIFIED = 0;
+  STATE_INIT = 1;
+  STATE_SELF_TEST = 2;
+  STATE_READY = 3;
+  STATE_MISSION = 4;
+  STATE_RTB = 5;
+  STATE_CHARGING = 6;
+  STATE_SAFE_MODE = 7;
+  STATE_EMERGENCY_STOP = 8;
+}
+
+message HealthStatus {
+  double cpu_percent = 1;
+  double ram_percent = 2;
+  double disk_percent = 3;
+}
+
+message BatteryStatus {
+  // Unset when the host reports no battery.
+  optional double percent = 1;
+  optional bool plugged = 2;
+}
+
+message StatusReport {
+  google.protobuf.Timestamp timestamp = 1;
+  State state = 2;
+  HealthStatus health = 3;
+  BatteryStatus battery = 4;
+}
+
+message CommandRequest {
+  string command = 1;
+}
+
+message CommandResponse {
+  bool accepted = 1;
+  string message = 2;
+}
+
+service GuardianService {
+  rpc GetStatus(google.protobuf.Empty) returns (StatusReport);
+  rpc SendCommand(CommandRequest) returns (CommandResponse);
+}

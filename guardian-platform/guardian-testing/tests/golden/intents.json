@@ -1,0 +1,17 @@
+{
+  "": "unknown",
+  "MISIEK, poziom baterii.": "battery_level",
+  "MISIEK, raport baterii.": "battery_level",
+  "MISIEK, raport stanu.": "report_status",
+  "MISIEK, rozpocznij patrol.": "start_patrol",
+  "MISIEK, uruchom diagnostykę.": "run_diagnostics",
+  "MISIEK, wróć do bazy.": "return_to_base",
+  "MISIEK, wykonaj snapshot.": "take_snapshot",
+  "MISIEK, wykryj ruch.": "detect_motion",
+  "MISIEK, wznów po awarii.": "recover",
+  "MISIEK, zatrzymaj misję.": "abort_mission",
+  "co słychać": "unknown",
+  "misja": "start_patrol",
+  "rtb": "return_to_base",
+  "stop": "emergency_stop"
+}

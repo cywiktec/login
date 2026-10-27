@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>guardian_core</name>
+  <version>0.1.0</version>
+  <description>MISIEK AI Guardian Core</description>
+  <maintainer email="maintainer@example.com">Guardian Core Maintainers</maintainer>
+  <license>MIT</license>
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <build_depend>ament_cmake_python</build_depend>
+  <exec_depend>launch</exec_depend>
+  <exec_depend>python3-psutil</exec_depend>
+  <exec_depend>python3-yaml</exec_depend>
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

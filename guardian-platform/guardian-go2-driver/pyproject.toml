@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "guardian-go2-driver"
+dynamic = ["version"]
+description = "MISIEK AI Guardian: guardian-go2-driver"
+requires-python = ">=3.10"
+readme = "README.md"
+
+[tool.setuptools.dynamic]
+version = {file = "VERSION"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

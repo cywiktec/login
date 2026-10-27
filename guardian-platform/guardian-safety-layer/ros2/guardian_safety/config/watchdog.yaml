@@ -1,0 +1,6 @@
+# PLACEHOLDER values.
+watchdog_node:
+  ros__parameters:
+    required_sources: ["safety_stack"]
+    timeout_s: 1.0
+    rate_hz: 5.0

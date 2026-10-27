@@ -1,0 +1,5 @@
+# "safety_stack" proves only the pub/sub path, not guardian_core or driver liveness.
+heartbeat_node:
+  ros__parameters:
+    source: "safety_stack"
+    rate_hz: 5.0
