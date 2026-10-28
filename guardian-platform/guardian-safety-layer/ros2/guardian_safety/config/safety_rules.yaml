@@ -1,0 +1,8 @@
+# PLACEHOLDER thresholds, not tuned for the robot.
+safety_manager:
+  ros__parameters:
+    battery_low: 30.0
+    battery_critical: 15.0
+    input_timeout_s: 1.0
+    battery_timeout_s: 10.0
+    startup_grace_s: 5.0

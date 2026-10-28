@@ -1,0 +1,5 @@
+# Name of a guardian_core command, e.g. "raport stanu", "rozpocznij patrol"
+string command
+---
+bool accepted
+string message

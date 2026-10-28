@@ -1,0 +1,12 @@
+# REFERENCE ONLY - not loaded by any node. The profiles are defined in code
+# (guardian_safety/common.py: command_qos, status_qos); keep this file in sync by hand.
+command:
+  history: keep_last
+  depth: 10
+  reliability: reliable
+  durability: volatile
+status:
+  history: keep_last
+  depth: 1
+  reliability: reliable
+  durability: transient_local

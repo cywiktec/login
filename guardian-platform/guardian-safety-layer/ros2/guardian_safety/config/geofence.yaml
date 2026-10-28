@@ -1,0 +1,6 @@
+# PLACEHOLDER: 10x10 m square in map metres. MUST be replaced for any real site.
+geofence_node:
+  ros__parameters:
+    polygon: [0.0, 0.0, 10.0, 0.0, 10.0, 10.0, 0.0, 10.0]
+    position_timeout_s: 1.0
+    rate_hz: 5.0

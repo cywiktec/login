@@ -1,0 +1,11 @@
+# goal
+string mission_id
+string type
+---
+# result
+bool success
+string message
+---
+# feedback
+float32 progress
+uint8 state

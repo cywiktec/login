@@ -1,0 +1,4 @@
+# PLACEHOLDER values. Nodes: emergency_stop_node
+emergency_stop_node:
+  ros__parameters:
+    rate_hz: 5.0

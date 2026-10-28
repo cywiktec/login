@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "guardian-core"
+dynamic = ["version"]
+description = "MISIEK AI Guardian Core"
+requires-python = ">=3.10"
+readme = "README.md"
+dependencies = ["psutil==7.0.0", "PyYAML>=6.0"]
+
+[project.scripts]
+guardian-core = "guardian_core.main:main"
+
+[tool.setuptools.dynamic]
+version = {file = "VERSION"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

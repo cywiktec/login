@@ -1,0 +1,4 @@
+builtin_interfaces/Time stamp
+float32 cpu_percent
+float32 ram_percent
+float32 disk_percent

@@ -1,0 +1,8 @@
+# Reset policy for both latching nodes. There is no authentication yet, so reset stays disabled.
+# Setting true lets ANY client on the ROS graph release a latched stop.
+emergency_stop_node:
+  ros__parameters:
+    allow_reset: false
+safety_manager:
+  ros__parameters:
+    allow_reset: false
